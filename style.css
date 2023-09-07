@@ -1,0 +1,86 @@
+:root {
+    --light-blue: 211, 226, 238;
+    --rose-pink: 237, 110, 195;
+    --cream: 239, 236, 230;
+    --pumpkin: 255, 129, 51;
+    --green: 145, 204, 25;
+    --grey-black: #1e1c16;
+    --purple: #490933;
+}
+
+body {
+    background-color: black;
+    background-image: url(hayley-clues-4KGH5Qzoddk-unsplash.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    height: 95vh;
+    color: var(--grey-black);
+}
+
+h1,
+h2 {
+    padding-left: 1rem;
+}
+
+button {
+    margin: 5px;
+}
+
+header {
+    background-color: rgba(var(--cream), 0.8);
+    width: 100%;
+}
+
+footer {
+    background-color: rgba(var(--cream), 0.8);
+    font-size: 0.7rem;
+    text-align: center;
+    width: 100%;
+    height: 7%;
+    border: rgba(var(--light-blue), 0.19) solid 1px;
+}
+
+main {
+    height: 75%;
+    background-color: rgba(var(--light-blue), 0.1);
+    padding: 1rem;
+}
+
+nav {
+    background-color: rgba(var(--rose-pink), 0.5);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-flow: row;
+    width: 100%;
+}
+
+#container {
+    background-color: rgba(var(--cream), 0.5);
+    height: 100%;
+    width: 95%;
+    margin: auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display: flex;
+    flex-flow: column;
+    padding: 0;
+
+}
+
+#container>nav {
+    opacity: 90%;
+    background-color: rgba(var(--pumpkin), 0.6);
+}
+
+#app {
+    border: rgba(var(--light-blue), 0.2) solid 1px;
+    flex: 1 1 auto;
+    margin: 5px;
+    display: flex;
+}
+
+a {
+    color: rgba(var(--rose-pink));
+}
