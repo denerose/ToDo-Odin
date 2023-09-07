@@ -84,3 +84,11 @@ nav {
 a {
     color: rgba(var(--rose-pink));
 }
+
+.taskCard {
+    background-color: rgba(var(--light-blue), 0.9);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border: rgba(var(--green), 0.8) solid 0.5px;
+    border-radius: 5px;
+
+}
