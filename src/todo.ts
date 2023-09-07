@@ -6,7 +6,7 @@ export namespace Tasks {
 
     const people: Person[] = [{ name: "Me" }]
 
-    interface ToDoItemProps {
+    export interface ToDoItemProps {
         title: string;
         description?: string;
         status: boolean;
@@ -48,10 +48,14 @@ export namespace Tasks {
         }),
     ]
 
-    const loungeRoom: ToDoItem[] = testTasks
+    const allTasks: ToDoItem[] = testTasks
 
-    export function getRoom() {
-        return (loungeRoom)
+    export function getTaskList() {
+        return (allTasks)
     }
 
+    export function newToDoItem(input: ToDoItemProps) {
+        let newTask = new ToDoItem(input)
+        getTaskList().push(newTask)
+    }
 }

@@ -30,11 +30,16 @@ var Tasks;
       assignedPerson: { name: "You" }
     })
   ];
-  const loungeRoom = testTasks;
-  function getRoom() {
-    return loungeRoom;
+  const allTasks = testTasks;
+  function getTaskList() {
+    return allTasks;
   }
-  Tasks2.getRoom = getRoom;
+  Tasks2.getTaskList = getTaskList;
+  function newToDo(input) {
+    let newTask = new ToDoItem(input);
+    getTaskList().push(newTask);
+  }
+  Tasks2.newToDo = newToDo;
 })(Tasks || (Tasks = {}));
 
 // src/display.ts
@@ -42,7 +47,7 @@ var DisplayControl;
 ((DisplayControl2) => {
   const app = document.getElementById("app");
   function addTasksToDOM() {
-    Tasks.getRoom().forEach((task) => {
+    Tasks.getTaskList().forEach((task) => {
       const newCard = document.createElement("div");
       const newTitle = document.createElement("H2");
       newCard.className = "taskCard";
@@ -52,10 +57,29 @@ var DisplayControl;
     });
   }
   DisplayControl2.addTasksToDOM = addTasksToDOM;
+  function addEventListeners() {
+    const taskBtn = document.getElementById("newTaskBtn");
+    const roomBtn = document.getElementById("newRoomBtn");
+    const cancelBtn = document.getElementById("cancelModalBtn");
+    const newTaskModal = document.getElementById("newTaskModal");
+    taskBtn.onclick = function() {
+      newTaskModal.style.display = "block";
+    };
+    cancelBtn.onclick = function() {
+      newTaskModal.style.display = "none";
+    };
+    window.onclick = function(event) {
+      if (event.target == newTaskModal) {
+        newTaskModal.style.display = "none";
+      }
+    };
+  }
+  DisplayControl2.addEventListeners = addEventListeners;
 })(DisplayControl || (DisplayControl = {}));
 
 // src/index.ts
 function main() {
   DisplayControl.addTasksToDOM();
+  DisplayControl.addEventListeners();
 }
 main();
