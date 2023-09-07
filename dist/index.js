@@ -35,11 +35,11 @@ var Tasks;
     return allTasks;
   }
   Tasks2.getTaskList = getTaskList;
-  function newToDo(input) {
+  function newToDoItem(input) {
     let newTask = new ToDoItem(input);
     getTaskList().push(newTask);
   }
-  Tasks2.newToDo = newToDo;
+  Tasks2.newToDoItem = newToDoItem;
 })(Tasks || (Tasks = {}));
 
 // src/display.ts
