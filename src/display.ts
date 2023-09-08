@@ -6,17 +6,20 @@ export module DisplayControl {
 
     export function addTasksToDOM() {
         app.innerHTML = ""
-        Tasks.getTaskList().forEach(task => {
+        const taskList = Tasks.getTaskList()
+        taskList.forEach(task => {
             const newCard = document.createElement('div')
-            const newTitle = document.createElement('H2')
+            const newTitle = document.createElement('h2')
             newCard.className = "taskCard"
             newCard.id = String(task.key)
             newTitle.innerText = task.title
+            newTitle.className = "taskHeader"
             newCard.appendChild(newTitle)
-            const deleteBtn = document.createElement('button')
+            const deleteBtn = document.createElement('div')
             deleteBtn.innerHTML = "<img src='trash.svg'/>"
+            deleteBtn.className = "deleteBtn"
             deleteBtn.onclick = function (){
-                task.removeSelf();
+                Tasks.removeToDoItem(task.key)
                 addTasksToDOM();
             }
             newCard.appendChild(deleteBtn)

@@ -32,13 +32,8 @@ export namespace Tasks {
             lastKey++
         }
 
-       public changeStatus() {
+        public changeStatus() {
             this.status = !this.status
-        }
-
-        public removeSelf() {
-           const i = allTasks.indexOf(this)
-           allTasks.splice(i)
         }
 
     }
@@ -58,7 +53,7 @@ export namespace Tasks {
         }),
     ]
 
-    const allTasks: ToDoItem[] = testTasks
+    let allTasks: ToDoItem[] = testTasks
 
     export function getTaskList() {
         return (allTasks)
@@ -67,5 +62,12 @@ export namespace Tasks {
     export function newToDoItem(input: ToDoItemProps) {
         let newTask = new ToDoItem(input)
         getTaskList().push(newTask)
+    }
+
+    export function removeToDoItem(keyToRemove: number) {
+        let filtered = allTasks.filter(function(value){ 
+            return value.key !== keyToRemove;
+        });
+        allTasks = filtered
     }
 }

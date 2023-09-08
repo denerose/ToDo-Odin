@@ -28,6 +28,7 @@ button {
 header {
     background-color: rgba(var(--cream), 0.8);
     width: 100%;
+    margin: 0;
 }
 
 footer {
@@ -94,6 +95,7 @@ a {
     color: rgba(var(--rose-pink));
 }
 
+/* generated item styles */
 .taskCard {
     background-color: rgba(var(--light-blue), 0.85);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -103,12 +105,21 @@ a {
     margin: 5px;
 }
 
-.taskCard > h2 {
+.taskHeader {
     background-color: rgba(var(--pumpkin), 0.6);
     text-align: center;
     color: rgb(var(--grey-black));
+    position: relative;
+    top: 0;
+    margin: 0;
+    border-radius: 5px;
 }
 
+.deleteBtn:hover {
+    filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
+}
+
+/* modal styles */
 .modal {
     display: none;
     position: fixed;

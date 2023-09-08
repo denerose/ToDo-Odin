@@ -17,10 +17,6 @@ var Tasks;
     changeStatus() {
       this.status = !this.status;
     }
-    removeSelf() {
-      const i = allTasks.indexOf(this);
-      allTasks.splice(i);
-    }
   }
   Tasks2.ToDoItem = ToDoItem;
   let testTasks = [
@@ -37,7 +33,7 @@ var Tasks;
       assignedPerson: { name: "You" }
     })
   ];
-  const allTasks = testTasks;
+  let allTasks = testTasks;
   function getTaskList() {
     return allTasks;
   }
@@ -47,6 +43,13 @@ var Tasks;
     getTaskList().push(newTask);
   }
   Tasks2.newToDoItem = newToDoItem;
+  function removeToDoItem(keyToRemove) {
+    let filtered = allTasks.filter(function(value) {
+      return value.key !== keyToRemove;
+    });
+    allTasks = filtered;
+  }
+  Tasks2.removeToDoItem = removeToDoItem;
 })(Tasks || (Tasks = {}));
 
 // src/display.ts
@@ -55,17 +58,20 @@ var DisplayControl;
   const app = document.getElementById("app");
   function addTasksToDOM() {
     app.innerHTML = "";
-    Tasks.getTaskList().forEach((task) => {
+    const taskList = Tasks.getTaskList();
+    taskList.forEach((task) => {
       const newCard = document.createElement("div");
-      const newTitle = document.createElement("H2");
+      const newTitle = document.createElement("h2");
       newCard.className = "taskCard";
       newCard.id = String(task.key);
       newTitle.innerText = task.title;
+      newTitle.className = "taskHeader";
       newCard.appendChild(newTitle);
-      const deleteBtn = document.createElement("button");
+      const deleteBtn = document.createElement("div");
       deleteBtn.innerHTML = "<img src='trash.svg'/>";
+      deleteBtn.className = "deleteBtn";
       deleteBtn.onclick = function() {
-        task.removeSelf();
+        Tasks.removeToDoItem(task.key);
         addTasksToDOM();
       };
       newCard.appendChild(deleteBtn);
