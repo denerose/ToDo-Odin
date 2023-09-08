@@ -47,6 +47,7 @@ var DisplayControl;
 ((DisplayControl2) => {
   const app = document.getElementById("app");
   function addTasksToDOM() {
+    app.innerHTML = "";
     Tasks.getTaskList().forEach((task) => {
       const newCard = document.createElement("div");
       const newTitle = document.createElement("H2");
@@ -73,6 +74,20 @@ var DisplayControl;
         newTaskModal.style.display = "none";
       }
     };
+    const newTaskForm = document.getElementById("newTaskForm");
+    newTaskForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const formData = new FormData(newTaskForm);
+      Tasks.newToDoItem({
+        title: String(formData.get("title")),
+        description: String(formData.get("desc")),
+        assignedPerson: { name: String(formData.get("assignPerson")) },
+        status: false
+      });
+      newTaskForm.reset();
+      newTaskModal.style.display = "none";
+      addTasksToDOM();
+    });
   }
   DisplayControl2.addEventListeners = addEventListeners;
 })(DisplayControl || (DisplayControl = {}));

@@ -114,18 +114,18 @@ a {
     padding: 0;
     border: 1px solid rgba(var(--light-blue), 0.8);
     width: 80%;
-    height: 40%;
     box-shadow: 0 4px 8px 0 rgba(var(--grey-black), 0.2), 0 6px 20px 0 rgba(var(--grey-black), 0.2);
 }
 
 .modal-header {
-    background-color: rgba(var(--pumpkin), 0.5);
+    background-color: rgba(var(--purple), 0.9);
     width: 100%;
     margin: 0;
     padding-top: 1px;
     padding-bottom: 1px;
     text-align: center;
     max-height: 3rem;
+    color: rgba(var(--light-blue), 1);
 }
 
 form {
@@ -134,4 +134,6 @@ form {
     column-gap: 5px;
     row-gap: 8px;
     padding-top: 10px;
+    width: 80%;
+    margin: auto;
 }
