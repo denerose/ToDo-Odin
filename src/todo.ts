@@ -13,22 +13,32 @@ export namespace Tasks {
         assignedPerson?: Person;
     }
 
+    let lastKey = 0
+
     export class ToDoItem {
 
         title: string;
         description?: string;
         status: boolean;
         assignedPerson?: Person;
+        key: number
 
         constructor(props: ToDoItemProps) {
             this.title = props.title
             this.description = props.description
             this.status = props.status
             this.assignedPerson = props.assignedPerson
+            this.key = lastKey + 1
+            lastKey++
         }
 
-        changeStatus() {
+       public changeStatus() {
             this.status = !this.status
+        }
+
+        public removeSelf() {
+           const i = allTasks.indexOf(this)
+           allTasks.splice(i)
         }
 
     }

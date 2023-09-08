@@ -4,15 +4,22 @@
 var Tasks;
 ((Tasks2) => {
   const people = [{ name: "Me" }];
+  let lastKey = 0;
   class ToDoItem {
     constructor(props) {
       this.title = props.title;
       this.description = props.description;
       this.status = props.status;
       this.assignedPerson = props.assignedPerson;
+      this.key = lastKey + 1;
+      lastKey++;
     }
     changeStatus() {
       this.status = !this.status;
+    }
+    removeSelf() {
+      const i = allTasks.indexOf(this);
+      allTasks.splice(i);
     }
   }
   Tasks2.ToDoItem = ToDoItem;
@@ -52,8 +59,16 @@ var DisplayControl;
       const newCard = document.createElement("div");
       const newTitle = document.createElement("H2");
       newCard.className = "taskCard";
+      newCard.id = String(task.key);
       newTitle.innerText = task.title;
       newCard.appendChild(newTitle);
+      const deleteBtn = document.createElement("button");
+      deleteBtn.innerHTML = "<img src='trash.svg'/>";
+      deleteBtn.onclick = function() {
+        task.removeSelf();
+        addTasksToDOM();
+      };
+      newCard.appendChild(deleteBtn);
       app.appendChild(newCard);
     });
   }

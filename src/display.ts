@@ -10,8 +10,16 @@ export module DisplayControl {
             const newCard = document.createElement('div')
             const newTitle = document.createElement('H2')
             newCard.className = "taskCard"
+            newCard.id = String(task.key)
             newTitle.innerText = task.title
             newCard.appendChild(newTitle)
+            const deleteBtn = document.createElement('button')
+            deleteBtn.innerHTML = "<img src='trash.svg'/>"
+            deleteBtn.onclick = function (){
+                task.removeSelf();
+                addTasksToDOM();
+            }
+            newCard.appendChild(deleteBtn)
             app.appendChild(newCard)
         });
     }
