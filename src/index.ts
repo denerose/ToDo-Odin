@@ -1,7 +1,7 @@
 import { DisplayControl } from "./display";
 
 function main() {
-    DisplayControl.addTasksToDOM();
+    DisplayControl.refreshTaskDisplay();
     DisplayControl.addEventListeners();
 }
 

@@ -4,25 +4,36 @@ export module DisplayControl {
 
     const app = document.getElementById("app") as HTMLDivElement
 
-    export function addTasksToDOM() {
+    export function refreshTaskDisplay() {
         app.innerHTML = ""
         const taskList = Tasks.getTaskList()
         taskList.forEach(task => {
             const newCard = document.createElement('div')
             const newTitle = document.createElement('h2')
-            newCard.className = "taskCard"
+            if (!task.status) newCard.className = "taskCard"
+            if (task.status) newCard.className = "compTaskCard"
             newCard.id = String(task.key)
             newTitle.innerText = task.title
             newTitle.className = "taskHeader"
             newCard.appendChild(newTitle)
-            const deleteBtn = document.createElement('div')
-            deleteBtn.innerHTML = "<img src='trash.svg'/>"
+            const taskBtnDiv = document.createElement('div')
+            const deleteBtn = document.createElement('img')
+            deleteBtn.src = "trash.svg"
             deleteBtn.className = "deleteBtn"
             deleteBtn.onclick = function (){
                 Tasks.removeToDoItem(task.key)
-                addTasksToDOM();
+                refreshTaskDisplay();
             }
-            newCard.appendChild(deleteBtn)
+            taskBtnDiv.appendChild(deleteBtn)
+            const checkBtn = document.createElement('img')
+            checkBtn.src = "check-circle.svg"
+            checkBtn.className = "checkBtn"
+            checkBtn.onclick = function () {
+                task.changeStatus();
+                refreshTaskDisplay();
+            }
+            taskBtnDiv.appendChild(checkBtn)
+            newCard.appendChild(taskBtnDiv)
             app.appendChild(newCard)
         });
     }
@@ -55,7 +66,7 @@ export module DisplayControl {
             })
             newTaskForm.reset();
             newTaskModal.style.display = "none"
-            addTasksToDOM();
+            refreshTaskDisplay();
         })
     }
 }

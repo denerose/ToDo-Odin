@@ -56,29 +56,42 @@ var Tasks;
 var DisplayControl;
 ((DisplayControl2) => {
   const app = document.getElementById("app");
-  function addTasksToDOM() {
+  function refreshTaskDisplay() {
     app.innerHTML = "";
     const taskList = Tasks.getTaskList();
     taskList.forEach((task) => {
       const newCard = document.createElement("div");
       const newTitle = document.createElement("h2");
-      newCard.className = "taskCard";
+      if (!task.status)
+        newCard.className = "taskCard";
+      if (task.status)
+        newCard.className = "compTaskCard";
       newCard.id = String(task.key);
       newTitle.innerText = task.title;
       newTitle.className = "taskHeader";
       newCard.appendChild(newTitle);
-      const deleteBtn = document.createElement("div");
-      deleteBtn.innerHTML = "<img src='trash.svg'/>";
+      const taskBtnDiv = document.createElement("div");
+      const deleteBtn = document.createElement("img");
+      deleteBtn.src = "trash.svg";
       deleteBtn.className = "deleteBtn";
       deleteBtn.onclick = function() {
         Tasks.removeToDoItem(task.key);
-        addTasksToDOM();
+        refreshTaskDisplay();
       };
-      newCard.appendChild(deleteBtn);
+      taskBtnDiv.appendChild(deleteBtn);
+      const checkBtn = document.createElement("img");
+      checkBtn.src = "check-circle.svg";
+      checkBtn.className = "checkBtn";
+      checkBtn.onclick = function() {
+        task.changeStatus();
+        refreshTaskDisplay();
+      };
+      taskBtnDiv.appendChild(checkBtn);
+      newCard.appendChild(taskBtnDiv);
       app.appendChild(newCard);
     });
   }
-  DisplayControl2.addTasksToDOM = addTasksToDOM;
+  DisplayControl2.refreshTaskDisplay = refreshTaskDisplay;
   function addEventListeners() {
     const taskBtn = document.getElementById("newTaskBtn");
     const roomBtn = document.getElementById("newRoomBtn");
@@ -107,7 +120,7 @@ var DisplayControl;
       });
       newTaskForm.reset();
       newTaskModal.style.display = "none";
-      addTasksToDOM();
+      refreshTaskDisplay();
     });
   }
   DisplayControl2.addEventListeners = addEventListeners;
@@ -115,7 +128,7 @@ var DisplayControl;
 
 // src/index.ts
 function main() {
-  DisplayControl.addTasksToDOM();
+  DisplayControl.refreshTaskDisplay();
   DisplayControl.addEventListeners();
 }
 main();

@@ -96,6 +96,7 @@ a {
 }
 
 /* generated item styles */
+.compTaskCard,
 .taskCard {
     background-color: rgba(var(--light-blue), 0.85);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -105,6 +106,10 @@ a {
     margin: 5px;
 }
 
+.compTaskCard > .taskHeader {
+    background-color: rgba(var(--green), 0.6);
+}
+
 .taskHeader {
     background-color: rgba(var(--pumpkin), 0.6);
     text-align: center;
@@ -112,7 +117,7 @@ a {
     position: relative;
     top: 0;
     margin: 0;
-    border-radius: 5px;
+    border-radius: 5px 5px 0 0;
 }
 
 .deleteBtn:hover {
@@ -130,12 +135,12 @@ a {
     width: 100%;
     height: 100%;
     background-color: rgb(var(--grey-black));
-    background-color: rgba(var(--grey-black), 0.5);
+    background-color: rgba(var(--grey-black), 0.7);
 }
 
 .modal-content {
     position: relative;
-    background-color: rgb(var(--light-blue), 0.9);
+    background-color: rgba(var(--light-blue), 0.6);
     margin: auto;
     padding: 0;
     border: 1px solid rgba(var(--light-blue), 0.8);
