@@ -13,6 +13,10 @@ var Tasks;
       this.assignedPerson = props.assignedPerson;
       this.key = lastKey + 1;
       lastKey++;
+      this.category = props.category;
+      if (this.category === void 0 || this.category === null)
+        this.category = "default";
+      this.dueDate = props.dueDate;
     }
     changeStatus() {
       this.status = !this.status;
@@ -60,6 +64,7 @@ var DisplayControl;
     app.innerHTML = "";
     const taskList = Tasks.getTaskList();
     taskList.forEach((task) => {
+      var _a;
       const newCard = document.createElement("div");
       const newTitle = document.createElement("h2");
       if (!task.status)
@@ -70,6 +75,18 @@ var DisplayControl;
       newTitle.innerText = task.title;
       newTitle.className = "taskHeader";
       newCard.appendChild(newTitle);
+      const newInfo = document.createElement("div");
+      newInfo.className = "cardInfoDiv";
+      const catDiv = document.createElement("div");
+      catDiv.innerText = "Category: " + task.category;
+      newInfo.appendChild(catDiv);
+      const dueDiv = document.createElement("div");
+      dueDiv.innerText = "Due: " + String(task.dueDate);
+      newInfo.appendChild(dueDiv);
+      const personDiv = document.createElement("div");
+      personDiv.innerText = "User: " + String((_a = task.assignedPerson) == null ? void 0 : _a.name);
+      newInfo.appendChild(personDiv);
+      newCard.appendChild(newInfo);
       const taskBtnDiv = document.createElement("div");
       const deleteBtn = document.createElement("img");
       deleteBtn.src = "trash.svg";
@@ -78,6 +95,7 @@ var DisplayControl;
         Tasks.removeToDoItem(task.key);
         refreshTaskDisplay();
       };
+      deleteBtn.title = "delete task";
       taskBtnDiv.appendChild(deleteBtn);
       const checkBtn = document.createElement("img");
       checkBtn.src = "check-circle.svg";
@@ -86,6 +104,7 @@ var DisplayControl;
         task.changeStatus();
         refreshTaskDisplay();
       };
+      checkBtn.title = "change task status";
       taskBtnDiv.appendChild(checkBtn);
       newCard.appendChild(taskBtnDiv);
       app.appendChild(newCard);

@@ -16,6 +16,18 @@ export module DisplayControl {
             newTitle.innerText = task.title
             newTitle.className = "taskHeader"
             newCard.appendChild(newTitle)
+            const newInfo = document.createElement('div')
+            newInfo.className = "cardInfoDiv"
+            const catDiv = document.createElement('div')
+            catDiv.innerText = "Category: " + task.category
+            newInfo.appendChild(catDiv)
+            const dueDiv = document.createElement('div')
+            dueDiv.innerText = "Due: " + String(task.dueDate)
+            newInfo.appendChild(dueDiv)
+            const personDiv = document.createElement('div')
+            personDiv.innerText = "User: " + String(task.assignedPerson?.name)
+            newInfo.appendChild(personDiv)
+            newCard.appendChild(newInfo)
             const taskBtnDiv = document.createElement('div')
             const deleteBtn = document.createElement('img')
             deleteBtn.src = "trash.svg"
@@ -24,6 +36,7 @@ export module DisplayControl {
                 Tasks.removeToDoItem(task.key)
                 refreshTaskDisplay();
             }
+            deleteBtn.title = "delete task"
             taskBtnDiv.appendChild(deleteBtn)
             const checkBtn = document.createElement('img')
             checkBtn.src = "check-circle.svg"
@@ -32,6 +45,7 @@ export module DisplayControl {
                 task.changeStatus();
                 refreshTaskDisplay();
             }
+            checkBtn.title = "change task status"
             taskBtnDiv.appendChild(checkBtn)
             newCard.appendChild(taskBtnDiv)
             app.appendChild(newCard)

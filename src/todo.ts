@@ -11,6 +11,8 @@ export namespace Tasks {
         description?: string;
         status: boolean;
         assignedPerson?: Person;
+        dueDate?: Date;
+        category?: string;
     }
 
     let lastKey = 0
@@ -22,6 +24,8 @@ export namespace Tasks {
         status: boolean;
         assignedPerson?: Person;
         key: number
+        dueDate?: Date;
+        category: string | undefined | null;
 
         constructor(props: ToDoItemProps) {
             this.title = props.title
@@ -30,6 +34,9 @@ export namespace Tasks {
             this.assignedPerson = props.assignedPerson
             this.key = lastKey + 1
             lastKey++
+            this.category = props.category
+            if (this.category === undefined || this.category === null) this.category = "default"
+            this.dueDate = props.dueDate
         }
 
         public changeStatus() {

@@ -27,7 +27,7 @@ button {
 
 header {
     background-color: rgba(var(--cream), 0.8);
-    width: 100%;
+    width: 105%;
     margin: 0;
 }
 
@@ -35,7 +35,7 @@ footer {
     background-color: rgba(var(--cream), 0.8);
     font-size: 0.7rem;
     text-align: center;
-    width: 100%;
+    width: 101%;
     height: 7%;
     border: rgba(var(--light-blue), 0.19) solid 1px;
 }
@@ -60,6 +60,7 @@ button {
     border-radius: 2px;
     padding: 0.2em;
     min-width: 5em;
+    cursor: pointer;
 }
 
 #container {
@@ -87,7 +88,7 @@ button {
     display: flex;
     flex-flow: row wrap;
     align-content: flex-start;
-    justify-content: flex-start;
+    justify-content: space-evenly;
     gap: 2px;
 }
 
@@ -102,11 +103,11 @@ a {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border: 0.5px solid rgba(var(--grey-black), 0.4);
     border-radius: 5px;
-    min-width: 20%;
+    min-width: 18%;
     margin: 5px;
 }
 
-.compTaskCard > .taskHeader {
+.compTaskCard>.taskHeader {
     background-color: rgba(var(--green), 0.6);
 }
 
@@ -122,6 +123,16 @@ a {
 
 .deleteBtn:hover {
     filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
+    cursor: pointer;
+}
+
+.checkBtn:hover {
+    filter: invert(65%) sepia(78%) saturate(446%) hue-rotate(35deg) brightness(95%) contrast(98%);
+    cursor: pointer;
+}
+
+.compTaskCard .checkBtn:hover {
+    filter: invert(60%) sepia(6%) saturate(7360%) hue-rotate(336deg) brightness(103%) contrast(101%);
 }
 
 /* modal styles */
