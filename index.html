@@ -14,7 +14,8 @@
     <header>
         <h1>My Little Chores App</h1>
         <nav id="projectNavBar">
-            <button type="button" id="newRoomBtn">Room</button>
+            <button type="button" id="newCatBtn">New Category</button>
+            <div id="catDiv"></div>
         </nav>
     </header>
     <div class="modal" id="newTaskModal">
@@ -26,6 +27,10 @@
                 <form action="" id="newTaskForm">
                     <label for="title">Task Name:</label>
                     <input type="text" name="title" id="title">
+                    <label for="category">Category:</label>
+                    <select name="category" id="catsDrop">
+                        <option value="default">default</option>
+                    </select>
                     <label for="desc">Description:</label>
                     <input type="text" name="description" id="desc">
                     <label for="assignPerson">Assigned To:</label>

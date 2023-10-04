@@ -4,6 +4,7 @@
 var Tasks;
 ((Tasks2) => {
   const people = [{ name: "Me" }];
+  const categories = ["default", "Test"];
   let lastKey = 0;
   class ToDoItem {
     constructor(props) {
@@ -54,12 +55,17 @@ var Tasks;
     allTasks = filtered;
   }
   Tasks2.removeToDoItem = removeToDoItem;
+  function getCats() {
+    return categories;
+  }
+  Tasks2.getCats = getCats;
 })(Tasks || (Tasks = {}));
 
 // src/display.ts
 var DisplayControl;
 ((DisplayControl2) => {
   const app = document.getElementById("app");
+  let currentCategory = "default";
   function refreshTaskDisplay() {
     app.innerHTML = "";
     const taskList = Tasks.getTaskList();
@@ -141,8 +147,34 @@ var DisplayControl;
       newTaskModal.style.display = "none";
       refreshTaskDisplay();
     });
+    const newCatBtn = document.getElementById("newCatBtn");
+    newCatBtn.addEventListener("click", () => {
+      refreshCatButtons(Tasks.getCats());
+    });
   }
   DisplayControl2.addEventListeners = addEventListeners;
+  function addCatButton(cat) {
+    const catDiv = document.getElementById("catDiv");
+    const newCatBtn = document.createElement("button");
+    newCatBtn.innerText = String(cat);
+    catDiv.appendChild(newCatBtn);
+  }
+  function addCatOption(cat) {
+    const newCatOpt = document.createElement("option");
+    newCatOpt.value = cat;
+    newCatOpt.innerText = cat;
+    return newCatOpt;
+  }
+  function refreshCatButtons(array) {
+    const catDiv = document.getElementById("catDiv");
+    const catsDrop = document.getElementById("catsDrop");
+    catDiv.innerHTML = "";
+    catsDrop.innerHTML = "";
+    array.forEach((cat) => {
+      addCatButton(cat);
+      catsDrop.appendChild(addCatOption(cat));
+    });
+  }
 })(DisplayControl || (DisplayControl = {}));
 
 // src/index.ts

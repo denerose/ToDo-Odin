@@ -4,6 +4,8 @@ export module DisplayControl {
 
     const app = document.getElementById("app") as HTMLDivElement
 
+    let currentCategory = "default"
+
     export function refreshTaskDisplay() {
         app.innerHTML = ""
         const taskList = Tasks.getTaskList()
@@ -81,6 +83,35 @@ export module DisplayControl {
             newTaskForm.reset();
             newTaskModal.style.display = "none"
             refreshTaskDisplay();
+        })
+        const newCatBtn = document.getElementById("newCatBtn") as HTMLButtonElement
+        newCatBtn.addEventListener("click", () =>{
+            refreshCatButtons(Tasks.getCats())
+        })
+    }
+
+    function addCatButton(cat: string) {
+        const catDiv = document.getElementById("catDiv") as HTMLDivElement
+        const newCatBtn = document.createElement('button') as HTMLButtonElement
+        newCatBtn.innerText = String(cat)
+        catDiv.appendChild(newCatBtn)
+    }
+
+    function addCatOption(cat: string) {
+        const newCatOpt = document.createElement('option')
+        newCatOpt.value = cat
+        newCatOpt.innerText = cat
+        return(newCatOpt)
+    }
+
+    function refreshCatButtons(array: string[]) {
+        const catDiv = document.getElementById("catDiv") as HTMLDivElement
+        const catsDrop = document.getElementById("catsDrop") as HTMLSelectElement
+        catDiv.innerHTML = ''
+        catsDrop.innerHTML = ''
+        array.forEach(cat => {
+            addCatButton(cat)
+            catsDrop.appendChild(addCatOption(cat))
         })
     }
 }

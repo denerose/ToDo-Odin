@@ -54,6 +54,11 @@ nav {
     width: 100%;
 }
 
+#catDiv {
+    display: flex;
+    flex-flow: row wrap;
+}
+
 button {
     background-color: rgb(var(--light-blue));
     border: 0.2px solid rgb(var(--grey-black));
