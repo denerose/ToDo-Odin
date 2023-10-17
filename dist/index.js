@@ -15,9 +15,10 @@ var Tasks;
       this.key = lastKey + 1;
       lastKey++;
       this.category = props.category;
-      if (this.category === void 0 || this.category === null)
-        this.category = "default";
       this.dueDate = props.dueDate;
+      if (this.title == "") {
+        this.title = `Task #${this.key}`;
+      }
     }
     changeStatus() {
       this.status = !this.status;
